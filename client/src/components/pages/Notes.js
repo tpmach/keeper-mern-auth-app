@@ -13,9 +13,6 @@ export default function Notes(props) {
 
   useEffect(() => {
     if (!userData.user) history.push("/login")
-  })
-
-  useEffect(() => {
     async function getNotes() {
       try {
         const response = await axios.get("/notes/all", {
@@ -27,7 +24,7 @@ export default function Notes(props) {
       }
     }
     getNotes()
-  }, [props])
+  })
 
   async function deleteNote(id) {
     try {

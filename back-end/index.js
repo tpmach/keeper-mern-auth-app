@@ -20,12 +20,22 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false,
   },
   (err) => {
     if (err) throw error
     console.log("Successful connect to mongo db")
   }
 )
+
+//set up for run on Heroku
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../client/build"))
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"))
+  })
+}
 
 // set up routes
 app.use("/users", require("./routes/userRouter"))

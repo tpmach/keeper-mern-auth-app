@@ -13,7 +13,6 @@ export default function EditNote(props) {
   })
 
   const token = localStorage.getItem("auth-token")
-
   useEffect(() => {
     if (!userData.user) history.push("/login")
   })
@@ -30,7 +29,7 @@ export default function EditNote(props) {
       }
     }
     getNote()
-  }, [props])
+  }, [props, token])
 
   const handleChange = (event) =>
     setNote({ ...note, [event.target.name]: event.target.value })
