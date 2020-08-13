@@ -16,7 +16,7 @@ export default function Notes(props) {
   })
 
   useEffect(() => {
-    getNotes = async () => {
+    const getNotes = async () => {
       try {
         const response = await axios.get("/notes/all", {
           headers: { "x-auth-token": token },
