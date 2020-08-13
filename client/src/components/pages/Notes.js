@@ -13,7 +13,10 @@ export default function Notes(props) {
 
   useEffect(() => {
     if (!userData.user) history.push("/login")
-    async function getNotes() {
+  })
+
+  useEffect(() => {
+    getNotes = async () => {
       try {
         const response = await axios.get("/notes/all", {
           headers: { "x-auth-token": token },
